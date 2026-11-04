@@ -48,6 +48,8 @@ public class ModrinthApi implements ModpackApi{
         facetString.append(String.format("[\"project_type:%s\"]", searchFilters.isModpack ? "modpack" : "mod"));
         if(searchFilters.mcVersion != null && !searchFilters.mcVersion.isEmpty())
             facetString.append(String.format(",[\"versions:%s\"]", searchFilters.mcVersion));
+        if(!searchFilters.isModpack && searchFilters.loader != null && !searchFilters.loader.isEmpty())
+            facetString.append(String.format(",[\"categories:%s\"]", searchFilters.loader));
         facetString.append("]");
         params.put("facets", facetString.toString());
         params.put("query", searchFilters.name);
@@ -95,6 +97,16 @@ public class ModrinthApi implements ModpackApi{
             JsonObject version = response.get(i).getAsJsonObject();
             names[i] = version.get("name").getAsString();
             mcNames[i] = version.get("game_versions").getAsJsonArray().get(0).getAsString();
+            if(!item.isModpack && version.has("loaders")) {
+                // Standalone mods: show which loader(s) this file is built for
+                JsonArray loaders = version.getAsJsonArray("loaders");
+                StringBuilder loaderNames = new StringBuilder();
+                for(int l = 0; l < loaders.size(); l++) {
+                    if(l > 0) loaderNames.append('/');
+                    loaderNames.append(loaders.get(l).getAsString());
+                }
+                if(loaderNames.length() > 0) mcNames[i] += " [" + loaderNames + "]";
+            }
             urls[i] = version.get("files").getAsJsonArray().get(0).getAsJsonObject().get("url").getAsString();
             // Assume there may not be hashes, in case the API changes
             JsonObject hashesMap = version.getAsJsonArray("files").get(0).getAsJsonObject()
@@ -112,7 +124,11 @@ public class ModrinthApi implements ModpackApi{
 
     @Override
     public ModLoader installMod(ModDetail modDetail, int selectedVersion) throws IOException{
-        //TODO considering only modpacks for now
+        if(!modDetail.isModpack) {
+            // Standalone mod: drop the jar into mods/ of the current profile
+            SingleModInstaller.install(modDetail, selectedVersion);
+            return null;
+        }
         return ModpackInstaller.installModpack(modDetail, selectedVersion, this::installMrpack);
     }
 

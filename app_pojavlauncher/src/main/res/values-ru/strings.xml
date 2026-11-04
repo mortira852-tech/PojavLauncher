@@ -381,4 +381,9 @@
     <string name="local_login_bad_username_title">Неподходящее имя пользователя</string>
     <string name="local_login_bad_username_text">Имя пользователя должно быть от 3 до 16 символов в длину и содержать только латинские символы, цифры 0–9 или нижние подчёркивания.</string>
     <string name="quick_setting_title">Быстрые настройки</string>
+    <string name="mcl_button_mods">Моды (Modrinth / CurseForge)</string>
+    <string name="banner_title">Добро пожаловать</string>
+    <string name="banner_subtitle">Выберите версию внизу, установите моды из Modrinth и CurseForge и нажмите «Играть».</string>
+    <string name="search_mod_loader_label">Загрузчик модов</string>
+    <string name="search_mod_loader_any">Любой</string>
 </resources>

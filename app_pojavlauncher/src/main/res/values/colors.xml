@@ -3,8 +3,12 @@
     <color name="control_button_color">#4CC4C4C4</color>
     <color name="control_button_pressed_color">#4D000000</color>
 
-    <color name="minebutton_color">#57CC33</color>
-    <color name="background_app">#181818</color>
+    <color name="minebutton_color">#3C8527</color>
+    <color name="accent_green">#3C8527</color>
+    <color name="accent_green_pressed">#2E6B1E</color>
+    <color name="background_sidebar">#141414</color>
+    <color name="background_card">#262626</color>
+    <color name="background_app">#1B1B1B</color>
     <color name="divider">@color/background_overlay</color>
     <color name="background_overlay">#464646</color>
     <color name="background_status_bar">#242424</color>

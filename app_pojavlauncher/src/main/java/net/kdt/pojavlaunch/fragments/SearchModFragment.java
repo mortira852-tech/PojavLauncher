@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +54,9 @@ public class SearchModFragment extends Fragment implements ModItemAdapter.Search
 
     private final SearchFilters mSearchFilters;
 
+    /** Bundle key: true = search standalone mods, false/absent = search modpacks */
+    public static final String ARG_MODS_MODE = "mods_mode";
+
     public SearchModFragment(){
         super(R.layout.fragment_mod_search);
         mSearchFilters = new SearchFilters();
@@ -79,6 +84,11 @@ public class SearchModFragment extends Fragment implements ModItemAdapter.Search
         mFilterButton = view.findViewById(R.id.search_mod_filter);
 
         mDefaultTextColor = mStatusTextView.getTextColors();
+
+        Bundle args = getArguments();
+        if(args != null && args.getBoolean(ARG_MODS_MODE, false)) {
+            mSearchFilters.isModpack = false;
+        }
 
         mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerview.setAdapter(mModItemAdapter);
@@ -148,6 +158,23 @@ public class SearchModFragment extends Fragment implements ModItemAdapter.Search
             TextView mSelectedVersion = dialog.findViewById(R.id.search_mod_selected_mc_version_textview);
             Button mSelectVersionButton = dialog.findViewById(R.id.search_mod_mc_version_button);
             Button mApplyButton = dialog.findViewById(R.id.search_mod_apply_filters);
+            Spinner mLoaderSpinner = dialog.findViewById(R.id.search_mod_loader_spinner);
+            TextView mLoaderLabel = dialog.findViewById(R.id.search_mod_loader_textview);
+            final String[] loaderValues = {null, "fabric", "forge", "quilt", "neoforge"};
+            // Loader filter only makes sense for standalone mods
+            if(mLoaderSpinner != null && mLoaderLabel != null) {
+                int visibility = mSearchFilters.isModpack ? View.GONE : View.VISIBLE;
+                mLoaderSpinner.setVisibility(visibility);
+                mLoaderLabel.setVisibility(visibility);
+                mLoaderSpinner.setAdapter(new ArrayAdapter<>(requireContext(),
+                        android.R.layout.simple_spinner_dropdown_item,
+                        new String[]{getString(R.string.search_mod_loader_any), "Fabric", "Forge", "Quilt", "NeoForge"}));
+                for(int li = 0; li < loaderValues.length; li++) {
+                    if((loaderValues[li] == null && mSearchFilters.loader == null)
+                            || (loaderValues[li] != null && loaderValues[li].equals(mSearchFilters.loader)))
+                        mLoaderSpinner.setSelection(li);
+                }
+            }
 
             assert mSelectVersionButton != null;
             assert mSelectedVersion != null;
@@ -162,6 +189,8 @@ public class SearchModFragment extends Fragment implements ModItemAdapter.Search
             // Apply the new settings
             mApplyButton.setOnClickListener(v -> {
                 mSearchFilters.mcVersion = mSelectedVersion.getText().toString();
+                if(mLoaderSpinner != null && !mSearchFilters.isModpack)
+                    mSearchFilters.loader = loaderValues[mLoaderSpinner.getSelectedItemPosition()];
                 searchMods(mSearchEditText.getText().toString());
                 dialogInterface.dismiss();
             });

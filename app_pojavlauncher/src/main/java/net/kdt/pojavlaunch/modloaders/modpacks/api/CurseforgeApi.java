@@ -61,6 +61,15 @@ public class CurseforgeApi implements ModpackApi{
         params.put("sortOrder", "desc");
         if(searchFilters.mcVersion != null && !searchFilters.mcVersion.isEmpty())
             params.put("gameVersion", searchFilters.mcVersion);
+        if(!searchFilters.isModpack && searchFilters.loader != null) {
+            // https://docs.curseforge.com/#tocS_ModLoaderType
+            switch (searchFilters.loader) {
+                case "forge": params.put("modLoaderType", 1); break;
+                case "fabric": params.put("modLoaderType", 4); break;
+                case "quilt": params.put("modLoaderType", 5); break;
+                case "neoforge": params.put("modLoaderType", 6); break;
+            }
+        }
         if(previousPageResult != null)
             params.put("index", curseforgeSearchResult.previousOffset);
 
@@ -114,7 +123,15 @@ public class CurseforgeApi implements ModpackApi{
             versionNames[i] = modDetail.get("displayName").getAsString();
 
             JsonElement downloadUrl = modDetail.get("downloadUrl");
-            versionUrls[i] = downloadUrl.getAsString();
+            if(downloadUrl != null && !downloadUrl.isJsonNull()) {
+                versionUrls[i] = downloadUrl.getAsString();
+            } else if(modDetail.has("id") && modDetail.has("fileName")) {
+                // Some authors hide the direct link: fall back to the CDN edge URL
+                int fileId = modDetail.get("id").getAsInt();
+                versionUrls[i] = String.format("https://edge.forgecdn.net/files/%s/%s/%s",
+                        fileId / 1000, fileId % 1000, modDetail.get("fileName").getAsString());
+            }
+            mcVersionNames[i] = "?";
 
             JsonArray gameVersions = modDetail.getAsJsonArray("gameVersions");
             for(JsonElement jsonElement : gameVersions) {
@@ -133,7 +150,11 @@ public class CurseforgeApi implements ModpackApi{
 
     @Override
     public ModLoader installMod(ModDetail modDetail, int selectedVersion) throws IOException{
-        //TODO considering only modpacks for now
+        if(!modDetail.isModpack) {
+            // Standalone mod: drop the jar into mods/ of the current profile
+            SingleModInstaller.install(modDetail, selectedVersion);
+            return null;
+        }
         return ModpackInstaller.installModpack(modDetail, selectedVersion, this::installCurseforgeZip);
     }
 

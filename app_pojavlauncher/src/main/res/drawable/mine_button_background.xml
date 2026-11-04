@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!-- Flat green button used for the main actions (PLAY, confirm, etc.) -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" android:drawable="@drawable/mine_button_focused" />
-    <item android:state_enabled="false" android:drawable="@drawable/mine_button_focused" />
-    <item android:drawable="@drawable/mine_button_unfocused" />
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <solid android:color="#3A3A3A" />
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/accent_green_pressed" />
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/accent_green" />
+            <corners android:radius="4dp" />
+            <stroke android:width="1dp" android:color="#55B33B" />
+        </shape>
+    </item>
 </selector>

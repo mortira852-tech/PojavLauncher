@@ -36,6 +36,11 @@
 
     <!-- MCLauncherActivity: Tabs -->
     <string name="mcl_tab_wiki">Wiki</string>
+    <string name="mcl_button_mods">Mods (Modrinth / CurseForge)</string>
+    <string name="search_mod_loader_label">Mod loader</string>
+    <string name="search_mod_loader_any">Any</string>
+    <string name="banner_title">Welcome</string>
+    <string name="banner_subtitle">Pick a version below, install mods from Modrinth and CurseForge, and press Play.</string>
 
     <!-- MCLauncherActivity: Account status -->
 

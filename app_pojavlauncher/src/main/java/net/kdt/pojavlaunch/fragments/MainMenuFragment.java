@@ -45,6 +45,7 @@ public class MainMenuFragment extends Fragment {
         Button mInstallJarButton = view.findViewById(R.id.install_jar_button);
         Button mShareLogsButton = view.findViewById(R.id.share_logs_button);
         Button mOpenDirectoryButton = view.findViewById(R.id.open_files_button);
+        Button mModsButton = view.findViewById(R.id.mods_button);
 
         ImageButton mEditProfileButton = view.findViewById(R.id.edit_profile_button);
         Button mPlayButton = view.findViewById(R.id.play_button);
@@ -57,6 +58,15 @@ public class MainMenuFragment extends Fragment {
         mInstallJarButton.setOnLongClickListener(v->{
             runInstallerWithConfirmation(true);
             return true;
+        });
+        mModsButton.setOnClickListener(v -> {
+            if(Tools.isLocalProfile(requireContext()) || Tools.isDemoProfile(requireContext())) {
+                Toast.makeText(requireContext(), R.string.toast_not_available_demo, Toast.LENGTH_LONG).show();
+                return;
+            }
+            Bundle modsArgs = new Bundle();
+            modsArgs.putBoolean(SearchModFragment.ARG_MODS_MODE, true);
+            Tools.swapFragment(requireActivity(), SearchModFragment.class, SearchModFragment.TAG, modsArgs);
         });
         mEditProfileButton.setOnClickListener(v -> mVersionSpinner.openProfileEditor(requireActivity()));
 
