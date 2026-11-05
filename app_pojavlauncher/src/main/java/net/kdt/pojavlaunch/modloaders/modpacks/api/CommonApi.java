@@ -46,6 +46,8 @@ public class CommonApi implements ModpackApi {
             // If there is an array and its length is zero, this means that we've exhausted the results for this
             // search query and we don't need to actually do the search
             if(results[i] != null && results[i].results.length == 0) continue;
+            // Source filter: the index of each api equals its Constants.SOURCE_* value
+            if(searchFilters.source >= 0 && searchFilters.source != i) continue;
             // If the previous page result is not null (aka the arrays aren't fresh)
             // and the previous result is null, it means that na error has occured on the previous
             // page. We lost contingency anyway, so don't bother requesting.

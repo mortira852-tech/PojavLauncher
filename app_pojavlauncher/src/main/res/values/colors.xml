@@ -3,16 +3,16 @@
     <color name="control_button_color">#4CC4C4C4</color>
     <color name="control_button_pressed_color">#4D000000</color>
 
-    <color name="minebutton_color">#3C8527</color>
-    <color name="accent_green">#3C8527</color>
-    <color name="accent_green_pressed">#2E6B1E</color>
-    <color name="background_sidebar">#141414</color>
-    <color name="background_card">#262626</color>
-    <color name="background_app">#1B1B1B</color>
+    <color name="minebutton_color">#1E78FF</color>
+    <color name="accent_green">#1E78FF</color>
+    <color name="accent_green_pressed">#1049B5</color>
+    <color name="background_sidebar">#B0040A1C</color>
+    <color name="background_card">#10204A</color>
+    <color name="background_app">#060C1F</color>
     <color name="divider">@color/background_overlay</color>
-    <color name="background_overlay">#464646</color>
-    <color name="background_status_bar">#242424</color>
-    <color name="background_bottom_bar">#232323</color>
+    <color name="background_overlay">#1A2A55</color>
+    <color name="background_status_bar">#050B1E</color>
+    <color name="background_bottom_bar">#D0040A1C</color>
 
     <color name="primary_text">#FFFFFF</color>
     <color name="secondary_text">#B2B2B2</color>

@@ -36,6 +36,8 @@
 
     <!-- MCLauncherActivity: Tabs -->
     <string name="mcl_tab_wiki">Wiki</string>
+    <string name="mcl_button_modrinth">Modrinth</string>
+    <string name="mcl_button_curseforge">CurseForge</string>
     <string name="mcl_button_mods">Mods (Modrinth / CurseForge)</string>
     <string name="search_mod_loader_label">Mod loader</string>
     <string name="search_mod_loader_any">Any</string>

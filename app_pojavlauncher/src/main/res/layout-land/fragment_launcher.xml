@@ -9,6 +9,18 @@
 	android:layout_height="match_parent"
 	android:background="@color/background_app">
 
+	<ImageView
+		android:id="@+id/launcher_bg"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:scaleType="centerCrop"
+		android:src="@drawable/bg_launcher"
+		android:importantForAccessibility="no"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintBottom_toBottomOf="parent" />
+
 	<androidx.constraintlayout.widget.Guideline
 		android:id="@+id/sidebar_guideline"
 		android:layout_width="0dp"
@@ -41,8 +53,14 @@
 			<com.kdt.mcgui.LauncherMenuButton
 				android:id="@+id/mods_button"
 				style="@style/LauncherMenuButton.Sidebar"
-				android:drawableStart="@drawable/ic_add_modded"
-				android:text="@string/mcl_button_mods" />
+				android:drawableStart="@drawable/ic_modrinth"
+				android:text="@string/mcl_button_modrinth" />
+
+			<com.kdt.mcgui.LauncherMenuButton
+				android:id="@+id/curseforge_button"
+				style="@style/LauncherMenuButton.Sidebar"
+				android:drawableStart="@drawable/ic_curseforge"
+				android:text="@string/mcl_button_curseforge" />
 
 			<com.kdt.mcgui.LauncherMenuButton
 				android:id="@+id/custom_control_button"
@@ -82,7 +100,7 @@
 		android:layout_width="0dp"
 		android:layout_height="0dp"
 		android:layout_margin="@dimen/_10sdp"
-		android:background="@drawable/background_banner"
+		android:background="@android:color/transparent"
 		android:gravity="bottom"
 		android:orientation="vertical"
 		android:padding="@dimen/_14sdp"

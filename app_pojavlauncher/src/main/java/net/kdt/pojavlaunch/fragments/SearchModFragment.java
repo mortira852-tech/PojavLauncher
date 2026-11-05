@@ -56,6 +56,8 @@ public class SearchModFragment extends Fragment implements ModItemAdapter.Search
 
     /** Bundle key: true = search standalone mods, false/absent = search modpacks */
     public static final String ARG_MODS_MODE = "mods_mode";
+    /** Bundle key: Constants.SOURCE_* to search only one site (default: all) */
+    public static final String ARG_SOURCE = "source";
 
     public SearchModFragment(){
         super(R.layout.fragment_mod_search);
@@ -89,6 +91,7 @@ public class SearchModFragment extends Fragment implements ModItemAdapter.Search
         if(args != null && args.getBoolean(ARG_MODS_MODE, false)) {
             mSearchFilters.isModpack = false;
         }
+        if(args != null) mSearchFilters.source = args.getInt(ARG_SOURCE, -1);
 
         mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerview.setAdapter(mModItemAdapter);

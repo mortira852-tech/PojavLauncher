@@ -11,5 +11,7 @@ public class SearchFilters {
     @Nullable public String mcVersion;
     /** Mod loader filter for standalone mods: "fabric", "forge", "quilt", "neoforge" or null (any) */
     @Nullable public String loader;
+    /** Restrict search to one source (Constants.SOURCE_*), or -1 for all sources */
+    public int source = -1;
 
 }

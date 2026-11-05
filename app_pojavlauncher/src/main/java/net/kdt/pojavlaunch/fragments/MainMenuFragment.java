@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import net.kdt.pojavlaunch.modloaders.modpacks.models.Constants;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -46,6 +48,7 @@ public class MainMenuFragment extends Fragment {
         Button mShareLogsButton = view.findViewById(R.id.share_logs_button);
         Button mOpenDirectoryButton = view.findViewById(R.id.open_files_button);
         Button mModsButton = view.findViewById(R.id.mods_button);
+        Button mCurseforgeButton = view.findViewById(R.id.curseforge_button);
 
         ImageButton mEditProfileButton = view.findViewById(R.id.edit_profile_button);
         Button mPlayButton = view.findViewById(R.id.play_button);
@@ -59,15 +62,8 @@ public class MainMenuFragment extends Fragment {
             runInstallerWithConfirmation(true);
             return true;
         });
-        mModsButton.setOnClickListener(v -> {
-            if(Tools.isLocalProfile(requireContext()) || Tools.isDemoProfile(requireContext())) {
-                Toast.makeText(requireContext(), R.string.toast_not_available_demo, Toast.LENGTH_LONG).show();
-                return;
-            }
-            Bundle modsArgs = new Bundle();
-            modsArgs.putBoolean(SearchModFragment.ARG_MODS_MODE, true);
-            Tools.swapFragment(requireActivity(), SearchModFragment.class, SearchModFragment.TAG, modsArgs);
-        });
+        mModsButton.setOnClickListener(v -> openModSearch(Constants.SOURCE_MODRINTH));
+        mCurseforgeButton.setOnClickListener(v -> openModSearch(Constants.SOURCE_CURSEFORGE));
         mEditProfileButton.setOnClickListener(v -> mVersionSpinner.openProfileEditor(requireActivity()));
 
         mPlayButton.setOnClickListener(v -> ExtraCore.setValue(ExtraConstants.LAUNCH_GAME, true));
@@ -89,6 +85,17 @@ public class MainMenuFragment extends Fragment {
             Tools.swapFragment(requireActivity(), GamepadMapperFragment.class, GamepadMapperFragment.TAG, null);
             return true;
         });
+    }
+
+    private void openModSearch(int source) {
+        if(Tools.isLocalProfile(requireContext()) || Tools.isDemoProfile(requireContext())) {
+            Toast.makeText(requireContext(), R.string.toast_not_available_demo, Toast.LENGTH_LONG).show();
+            return;
+        }
+        Bundle modsArgs = new Bundle();
+        modsArgs.putBoolean(SearchModFragment.ARG_MODS_MODE, true);
+        modsArgs.putInt(SearchModFragment.ARG_SOURCE, source);
+        Tools.swapFragment(requireActivity(), SearchModFragment.class, SearchModFragment.TAG, modsArgs);
     }
 
     private File getCurrentProfileDirectory() {
