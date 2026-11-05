@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Landscape launcher home: left sidebar + news banner + bottom play bar.
+<!-- Landscape home screen: neon button column on the left, version picker bottom-right.
      All view ids match the portrait layout so MainMenuFragment works unchanged. -->
 <androidx.constraintlayout.widget.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
@@ -22,21 +22,52 @@
 		app:layout_constraintBottom_toBottomOf="parent" />
 
 	<androidx.constraintlayout.widget.Guideline
-		android:id="@+id/sidebar_guideline"
+		android:id="@+id/left_guideline"
 		android:layout_width="0dp"
 		android:layout_height="0dp"
 		android:orientation="vertical"
-		app:layout_constraintGuide_percent="0.27" />
+		app:layout_constraintGuide_percent="0.40" />
 
-	<!-- Sidebar -->
-	<ScrollView
-		android:id="@+id/sidebar"
+	<androidx.constraintlayout.widget.Guideline
+		android:id="@+id/right_guideline"
 		android:layout_width="0dp"
 		android:layout_height="0dp"
-		android:background="@color/background_sidebar"
+		android:orientation="vertical"
+		app:layout_constraintGuide_percent="0.55" />
+
+	<!-- Darkens the left side so the buttons stay readable -->
+	<View
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:background="@drawable/background_left_scrim"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintEnd_toStartOf="@id/sidebar_guideline"
+		app:layout_constraintEnd_toEndOf="@id/left_guideline"
 		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintBottom_toBottomOf="parent" />
+
+	<com.kdt.mcgui.MineButton
+		android:id="@+id/play_button"
+		android:layout_width="0dp"
+		android:layout_height="@dimen/_48sdp"
+		android:layout_marginStart="@dimen/_12sdp"
+		android:layout_marginEnd="@dimen/_8sdp"
+		android:layout_marginTop="@dimen/_8sdp"
+		android:text="@string/main_play"
+		android:textAllCaps="true"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="@id/left_guideline"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<ScrollView
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_marginStart="@dimen/_12sdp"
+		android:layout_marginEnd="@dimen/_8sdp"
+		android:paddingBottom="@dimen/_8sdp"
+		android:clipToPadding="false"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="@id/left_guideline"
+		app:layout_constraintTop_toBottomOf="@id/play_button"
 		app:layout_constraintBottom_toBottomOf="parent">
 
 		<LinearLayout
@@ -45,94 +76,66 @@
 			android:orientation="vertical">
 
 			<com.kdt.mcgui.LauncherMenuButton
-				android:id="@+id/news_button"
-				style="@style/LauncherMenuButton.Sidebar"
-				android:drawableStart="@drawable/ic_menu_news"
-				android:text="@string/mcl_tab_wiki" />
-
-			<com.kdt.mcgui.LauncherMenuButton
 				android:id="@+id/mods_button"
-				style="@style/LauncherMenuButton.Sidebar"
+				style="@style/LauncherMenuButton.Neon"
 				android:drawableStart="@drawable/ic_modrinth"
 				android:text="@string/mcl_button_modrinth" />
 
 			<com.kdt.mcgui.LauncherMenuButton
 				android:id="@+id/curseforge_button"
-				style="@style/LauncherMenuButton.Sidebar"
+				style="@style/LauncherMenuButton.Neon"
 				android:drawableStart="@drawable/ic_curseforge"
 				android:text="@string/mcl_button_curseforge" />
 
 			<com.kdt.mcgui.LauncherMenuButton
 				android:id="@+id/custom_control_button"
-				style="@style/LauncherMenuButton.Sidebar"
+				style="@style/LauncherMenuButton.Neon"
 				android:drawableStart="@drawable/ic_menu_custom_controls"
 				android:text="@string/mcl_option_customcontrol" />
 
 			<com.kdt.mcgui.LauncherMenuButton
 				android:id="@+id/install_jar_button"
-				style="@style/LauncherMenuButton.Sidebar"
+				style="@style/LauncherMenuButton.Neon"
 				android:drawableStart="@drawable/ic_menu_install_jar"
 				android:text="@string/main_install_jar_file" />
 
 			<com.kdt.mcgui.LauncherMenuButton
-				android:id="@+id/share_logs_button"
-				style="@style/LauncherMenuButton.Sidebar"
-				android:drawableStart="@android:drawable/ic_menu_share"
-				android:text="@string/main_share_logs" />
-
-			<com.kdt.mcgui.LauncherMenuButton
 				android:id="@+id/open_files_button"
-				style="@style/LauncherMenuButton.Sidebar"
+				style="@style/LauncherMenuButton.Neon"
 				android:drawableStart="@drawable/ic_folder"
 				android:text="@string/mcl_button_open_directory" />
 
 			<com.kdt.mcgui.LauncherMenuButton
+				android:id="@+id/share_logs_button"
+				style="@style/LauncherMenuButton.Neon"
+				android:drawableStart="@android:drawable/ic_menu_share"
+				android:text="@string/main_share_logs" />
+
+			<com.kdt.mcgui.LauncherMenuButton
+				android:id="@+id/news_button"
+				style="@style/LauncherMenuButton.Neon"
+				android:drawableStart="@drawable/ic_menu_news"
+				android:text="@string/mcl_tab_wiki" />
+
+			<com.kdt.mcgui.LauncherMenuButton
 				android:id="@+id/discord_button"
-				style="@style/LauncherMenuButton.Sidebar"
+				style="@style/LauncherMenuButton.Neon"
 				android:drawableStart="@drawable/ic_discord"
 				android:text="@string/mcl_button_discord" />
 		</LinearLayout>
 	</ScrollView>
 
-	<!-- News banner (static, no third-party artwork) -->
+	<!-- Version picker, bottom-right -->
 	<LinearLayout
-		android:id="@+id/news_banner"
+		android:id="@+id/version_bar"
 		android:layout_width="0dp"
-		android:layout_height="0dp"
-		android:layout_margin="@dimen/_10sdp"
-		android:background="@android:color/transparent"
-		android:gravity="bottom"
-		android:orientation="vertical"
-		android:padding="@dimen/_14sdp"
-		app:layout_constraintStart_toEndOf="@id/sidebar_guideline"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintBottom_toTopOf="@id/play_bar">
-
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/banner_title"
-			android:textColor="@color/primary_text"
-			android:textSize="@dimen/_18ssp"
-			android:textStyle="bold" />
-
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="@dimen/_4sdp"
-			android:text="@string/banner_subtitle"
-			android:textColor="@color/secondary_text"
-			android:textSize="@dimen/_11ssp" />
-	</LinearLayout>
-
-	<!-- Bottom bar: version selector + play -->
-	<androidx.constraintlayout.widget.ConstraintLayout
-		android:id="@+id/play_bar"
-		android:layout_width="0dp"
-		android:layout_height="@dimen/_62sdp"
-		android:background="@color/background_bottom_bar"
-		app:layout_constraintStart_toEndOf="@id/sidebar_guideline"
+		android:layout_height="@dimen/_48sdp"
+		android:layout_marginEnd="@dimen/_12sdp"
+		android:layout_marginBottom="@dimen/_10sdp"
+		android:background="@drawable/background_menu_button"
+		android:gravity="center_vertical"
+		android:orientation="horizontal"
+		app:layout_constraintStart_toStartOf="@id/right_guideline"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintBottom_toBottomOf="parent">
 
@@ -140,34 +143,19 @@
 			android:id="@+id/mc_version_spinner"
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
+			android:layout_weight="1"
 			android:background="@android:color/transparent"
 			android:drawableEnd="@drawable/spinner_arrow"
 			app:drawableEndSize="@dimen/padding_heavy"
 			app:drawableStartIntegerScaling="true"
-			app:drawableStartSize="@dimen/_36sdp"
-			app:drawableEndPadding="@dimen/_1sdp"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintEnd_toStartOf="@id/edit_profile_button"
-			app:layout_constraintHorizontal_weight="1" />
+			app:drawableStartSize="@dimen/_32sdp"
+			app:drawableEndPadding="@dimen/_1sdp" />
 
 		<ImageButton
 			android:id="@+id/edit_profile_button"
-			android:layout_width="@dimen/_52sdp"
+			android:layout_width="@dimen/_44sdp"
 			android:layout_height="match_parent"
 			android:background="?android:attr/selectableItemBackground"
-			android:src="@drawable/ic_edit_profile"
-			app:layout_constraintEnd_toStartOf="@id/play_button" />
-
-		<com.kdt.mcgui.MineButton
-			android:id="@+id/play_button"
-			android:layout_width="@dimen/_150sdp"
-			android:layout_height="0dp"
-			android:layout_marginVertical="@dimen/_8sdp"
-			android:layout_marginHorizontal="@dimen/_10sdp"
-			android:text="@string/main_play"
-			android:textAllCaps="true"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			app:layout_constraintBottom_toBottomOf="parent" />
-	</androidx.constraintlayout.widget.ConstraintLayout>
+			android:src="@drawable/ic_edit_profile" />
+	</LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

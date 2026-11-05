@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Neon blue menu button (left column of the landscape home screen) -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#E01049B5" />
+            <corners android:radius="5dp" />
+            <stroke android:width="2dp" android:color="#7FB4FF" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#C0050C26" />
+            <corners android:radius="5dp" />
+            <stroke android:width="2dp" android:color="#2D8CFF" />
+        </shape>
+    </item>
+</selector>
