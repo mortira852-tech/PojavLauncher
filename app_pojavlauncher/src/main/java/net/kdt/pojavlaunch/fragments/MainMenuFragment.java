@@ -88,10 +88,7 @@ public class MainMenuFragment extends Fragment {
     }
 
     private void openModSearch(int source) {
-        if(Tools.isLocalProfile(requireContext()) || Tools.isDemoProfile(requireContext())) {
-            Toast.makeText(requireContext(), R.string.toast_not_available_demo, Toast.LENGTH_LONG).show();
-            return;
-        }
+        // Downloading mods does not need an account, so no demo-mode restriction here
         Bundle modsArgs = new Bundle();
         modsArgs.putBoolean(SearchModFragment.ARG_MODS_MODE, true);
         modsArgs.putInt(SearchModFragment.ARG_SOURCE, source);
