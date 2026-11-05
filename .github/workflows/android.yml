@@ -39,8 +39,8 @@ jobs:
         with:
           workflow: build.yml
           path: app_pojavlauncher/src/main/assets/components/jre
-          workflow_conclusion: success
-          repo: PojavLauncherTeam/android-openjdk-build-multiarch
+          workflow_conclusion: completed
+          repo: AngelAuraMC/angelauramc-openjdk-build
           branch: buildjre8
           name: jre8-pojav
 
@@ -50,8 +50,8 @@ jobs:
         with:
           workflow: build.yml
           path: app_pojavlauncher/src/main/assets/components/jre-new
-          workflow_conclusion: success
-          repo: PojavLauncherTeam/android-openjdk-build-multiarch
+          workflow_conclusion: completed
+          repo: AngelAuraMC/angelauramc-openjdk-build
           branch: buildjre17-21
           name: jre17-pojav
 
@@ -61,8 +61,8 @@ jobs:
         with:
           workflow: build.yml
           path: app_pojavlauncher/src/main/assets/components/jre-21
-          workflow_conclusion: success
-          repo: PojavLauncherTeam/android-openjdk-build-multiarch
+          workflow_conclusion: completed
+          repo: AngelAuraMC/angelauramc-openjdk-build
           branch: buildjre17-21
           name: jre21-pojav
 
