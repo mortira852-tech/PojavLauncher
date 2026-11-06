@@ -51,9 +51,9 @@ jobs:
           workflow: build.yml
           path: app_pojavlauncher/src/main/assets/components/jre-new
           workflow_conclusion: completed
-          repo: AngelAuraMC/angelauramc-openjdk-build
-          branch: buildjre17-21
-          name: jre17-pojav
+          repo: FCL-Team/Android-OpenJDK-Build
+          branch: Build_JRE_17
+          name: jre17-multiarch
           check_artifacts: true
           search_artifacts: true
 
@@ -64,9 +64,9 @@ jobs:
           workflow: build.yml
           path: app_pojavlauncher/src/main/assets/components/jre-21
           workflow_conclusion: completed
-          repo: AngelAuraMC/angelauramc-openjdk-build
-          branch: buildjre17-21
-          name: jre21-pojav
+          repo: FCL-Team/Android-OpenJDK-Build
+          branch: Build_JRE_21
+          name: jre21-multiarch
           check_artifacts: true
           search_artifacts: true
 
