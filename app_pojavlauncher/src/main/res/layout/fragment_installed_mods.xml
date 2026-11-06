@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_app"
+    android:orientation="vertical"
+    android:padding="@dimen/_12sdp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/installed_mods_title"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:text="@string/installed_mods_hint"
+        android:textColor="@color/secondary_text"
+        android:textSize="@dimen/_10ssp" />
+
+    <TextView
+        android:id="@+id/installed_mods_folder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:textColor="@color/secondary_text"
+        android:textSize="@dimen/_8ssp" />
+
+    <ListView
+        android:id="@+id/installed_mods_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_weight="1"
+        android:divider="@color/background_overlay"
+        android:dividerHeight="1dp" />
+
+    <TextView
+        android:id="@+id/installed_mods_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/_20sdp"
+        android:text="@string/installed_mods_empty"
+        android:textColor="@color/secondary_text"
+        android:textSize="@dimen/_11ssp" />
+</LinearLayout>

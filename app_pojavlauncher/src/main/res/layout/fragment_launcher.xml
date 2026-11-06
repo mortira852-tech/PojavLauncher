@@ -111,6 +111,14 @@
 				android:drawableStart="@drawable/ic_curseforge"
 				android:text="@string/mcl_button_curseforge"
 				app:layout_constraintTop_toBottomOf="@id/mods_button" />
+
+			<com.kdt.mcgui.LauncherMenuButton
+				android:id="@+id/installed_mods_button"
+				style="@style/LauncherMenuButton.Universal"
+				android:layout_width="match_parent"
+				android:drawableStart="@drawable/ic_add_modded"
+				android:text="@string/mcl_button_installed_mods"
+				app:layout_constraintTop_toBottomOf="@id/curseforge_button" />
 		</androidx.constraintlayout.widget.ConstraintLayout>
 	</ScrollView>
 

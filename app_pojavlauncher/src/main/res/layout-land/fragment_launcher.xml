@@ -88,6 +88,12 @@
 				android:text="@string/mcl_button_curseforge" />
 
 			<com.kdt.mcgui.LauncherMenuButton
+				android:id="@+id/installed_mods_button"
+				style="@style/LauncherMenuButton.Neon"
+				android:drawableStart="@drawable/ic_add_modded"
+				android:text="@string/mcl_button_installed_mods" />
+
+			<com.kdt.mcgui.LauncherMenuButton
 				android:id="@+id/custom_control_button"
 				style="@style/LauncherMenuButton.Neon"
 				android:drawableStart="@drawable/ic_menu_custom_controls"

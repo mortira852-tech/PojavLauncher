@@ -386,4 +386,11 @@
     <string name="banner_subtitle">Выберите версию внизу, установите моды из Modrinth и CurseForge и нажмите «Играть».</string>
     <string name="search_mod_loader_label">Загрузчик модов</string>
     <string name="search_mod_loader_any">Любой</string>
+    <string name="mcl_button_installed_mods">Мои моды</string>
+    <string name="installed_mods_title">Установленные моды</string>
+    <string name="installed_mods_hint">Нажми на мод, чтобы включить или выключить. Долгое нажатие — удалить.</string>
+    <string name="installed_mods_empty">Модов пока нет. Скачай их из Modrinth или CurseForge.</string>
+    <string name="installed_mods_delete_title">Удалить мод?</string>
+    <string name="installed_mods_delete_message">Мод %1$s будет удалён.</string>
+    <string name="installed_mods_error">Не удалось изменить этот файл</string>
 </resources>

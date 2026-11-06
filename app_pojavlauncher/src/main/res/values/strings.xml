@@ -36,6 +36,13 @@
 
     <!-- MCLauncherActivity: Tabs -->
     <string name="mcl_tab_wiki">Wiki</string>
+    <string name="mcl_button_installed_mods">My mods</string>
+    <string name="installed_mods_title">Installed mods</string>
+    <string name="installed_mods_hint">Tap a mod to turn it on or off. Long-press to delete.</string>
+    <string name="installed_mods_empty">No mods yet. Download some from Modrinth or CurseForge.</string>
+    <string name="installed_mods_delete_title">Delete mod?</string>
+    <string name="installed_mods_delete_message">%1$s will be deleted.</string>
+    <string name="installed_mods_error">Could not change this file</string>
     <string name="mcl_button_modrinth">Modrinth</string>
     <string name="mcl_button_curseforge">CurseForge</string>
     <string name="mcl_button_mods">Mods (Modrinth / CurseForge)</string>

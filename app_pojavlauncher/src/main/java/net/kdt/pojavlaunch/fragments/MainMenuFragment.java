@@ -49,6 +49,7 @@ public class MainMenuFragment extends Fragment {
         Button mOpenDirectoryButton = view.findViewById(R.id.open_files_button);
         Button mModsButton = view.findViewById(R.id.mods_button);
         Button mCurseforgeButton = view.findViewById(R.id.curseforge_button);
+        Button mInstalledModsButton = view.findViewById(R.id.installed_mods_button);
 
         ImageButton mEditProfileButton = view.findViewById(R.id.edit_profile_button);
         Button mPlayButton = view.findViewById(R.id.play_button);
@@ -64,6 +65,7 @@ public class MainMenuFragment extends Fragment {
         });
         mModsButton.setOnClickListener(v -> openModSearch(Constants.SOURCE_MODRINTH));
         mCurseforgeButton.setOnClickListener(v -> openModSearch(Constants.SOURCE_CURSEFORGE));
+        mInstalledModsButton.setOnClickListener(v -> Tools.swapFragment(requireActivity(), InstalledModsFragment.class, InstalledModsFragment.TAG, null));
         mEditProfileButton.setOnClickListener(v -> mVersionSpinner.openProfileEditor(requireActivity()));
 
         mPlayButton.setOnClickListener(v -> ExtraCore.setValue(ExtraConstants.LAUNCH_GAME, true));
