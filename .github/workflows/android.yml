@@ -54,6 +54,8 @@ jobs:
           repo: AngelAuraMC/angelauramc-openjdk-build
           branch: buildjre17-21
           name: jre17-pojav
+          check_artifacts: true
+          search_artifacts: true
 
       - name: Get JRE21
         continue-on-error: true
@@ -65,6 +67,8 @@ jobs:
           repo: AngelAuraMC/angelauramc-openjdk-build
           branch: buildjre17-21
           name: jre21-pojav
+          check_artifacts: true
+          search_artifacts: true
 
       - uses: gradle/actions/setup-gradle@v4
         with:
